@@ -3,374 +3,482 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan</title>
+    <title>Undangan Pernikahan Iil & Kealvin</title>
     
     <!-- Font Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Smooth Scroll */
+        /* Smooth Scroll & Background Dasar */
         html { scroll-behavior: smooth; }
-
         body {
             margin: 0; padding: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: #fcf9f6;
+            background-color: #f7f3f0;
             color: #333;
             overflow-x: hidden;
         }
 
-        h1, h2 { font-family: 'Great Vibes', cursive; color: #8b5e34; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; }
+        /* Tipografi */
+        h1, h2, .font-script { font-family: 'Great Vibes', cursive; font-weight: normal; }
+        h3, .font-serif { font-family: 'Playfair Display', serif; }
+        .text-red { color: #8B1E28; }
+        .text-white { color: #ffffff; }
+
+        /* Container Utama */
+        .container { 
+            max-width: 500px; 
+            margin: 0 auto; 
+            text-align: center; 
+            background: white; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+        }
         
-        /* 1. Sampul Depan (Cover) */
+        /* 1. COVER DEPAN (Background: foto-cover.jpg) */
         #cover {
             min-height: 100vh;
             width: 100%;
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') center/cover;
+            max-width: 500px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(139,30,40,0.85)), url('foto-cover.jpg') center/cover;
             color: white; 
             display: flex; 
             flex-direction: column;
-            justify-content: center; 
+            justify-content: space-between; 
             align-items: center; 
             box-sizing: border-box;
-            padding: 20px;
+            padding: 60px 20px 40px 20px;
         }
-        #cover h1 { font-size: 3.5rem; color: white; margin: 10px 0; }
+        .cover-top h3 { font-weight: normal; margin-bottom: -10px; font-size: 1.2rem; letter-spacing: 1px;}
+        .cover-top h1 { font-size: 4rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .cover-top p { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1rem; margin-top: 5px;}
+
+        .cover-bottom { width: 100%; margin-bottom: 20px;}
+        .cover-bottom p { font-size: 0.85rem; margin: 0 0 5px 0; }
+        .cover-bottom h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; margin: 10px 0; }
         
-        .btn {
-            background-color: #8b5e34; color: white; border: none;
-            padding: 12px 28px; font-size: 1rem; border-radius: 25px;
+        .btn-cover {
+            background-color: white; color: #8B1E28; border: none;
+            padding: 12px 30px; font-size: 0.95rem; border-radius: 25px;
             cursor: pointer; margin-top: 15px; font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-weight: 600; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-cover:hover { transform: translateY(-2px); background-color: #f0f0f0; }
+
+        /* 2. SECTION & BACKGROUNDS */
+        .section { padding: 50px 20px; position: relative; }
+        .bg-floral { background: #f9f5f2; color: #8B1E28; }
+        .bg-red { background-color: #8B1E28; color: white; }
+
+        /* Background Section Mempelai (foto-mempelai-bg.jpg) */
+        .bg-mempelai {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.88), rgba(249, 245, 242, 0.92)), url('foto-mempelai-bg.jpg') center/cover;
+            color: #8B1E28;
+        }
+
+        /* Background Section Save the Date (foto-savedate-bg.jpg) */
+        .bg-savedate {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.88), rgba(249, 245, 242, 0.92)), url('foto-savedate-bg.jpg') center/cover;
+            color: #8B1E28;
+        }
+
+        /* Background Section Ar-Rum (foto-arrum-bg.jpg) */
+        .bg-arrum {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.88), rgba(249, 245, 242, 0.92)), url('foto-arrum-bg.jpg') center/cover;
+            color: #8B1E28;
+        }
+
+        /* Animasi Slide Up */
+        .fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* Bingkai Foto Mempelai (Oval Double Line) */
+        .oval-wrapper {
+            border: 3px double #8B1E28;
+            border-radius: 150px;
+            padding: 8px;
             display: inline-block;
-            text-decoration: none;
-        }
-        .btn:hover { background-color: #6b4624; transform: translateY(-2px); }
-
-        /* 2. Konten Utama */
-        #main-content { padding-bottom: 50px; }
-
-        /* Animation Slide Up */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, transform;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Section Styling */
-        .section { 
-            margin: 40px 0; 
-            padding: 30px 20px; 
-            background: white; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-        }
-
-        /* Mempelai Card */
-        .mempelai-card {
             margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: white;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
-
-        /* Tombol Instagram Gradient */
-        .btn-ig {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: white;
-            padding: 7px 18px;
-            font-size: 0.85rem;
-            border-radius: 20px;
-            text-decoration: none;
-            margin-top: 12px;
-            font-weight: 500;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .btn-ig:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.25);
-            color: white;
-        }
-
-        /* Countdown Timer Box */
-        .timer-container {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .timer-box {
-            background: #fdf8f3;
-            border: 1px solid #8b5e34;
-            border-radius: 10px;
-            padding: 10px 15px;
-            min-width: 60px;
-        }
-        .timer-box span {
+        .oval-wrapper img {
+            border-radius: 140px;
+            width: 210px; height: 290px;
+            object-fit: cover;
             display: block;
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #8b5e34;
         }
-        .timer-box p {
-            margin: 0;
+
+        /* Kartu Oval Akad & Resepsi */
+        .oval-card {
+            border: 3px double #8B1E28;
+            border-radius: 120px;
+            padding: 40px 20px;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        /* Background Foto Akad Nikah (foto-akad.jpg) */
+        .oval-card-akad {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.82), rgba(255, 245, 245, 0.88)), url('foto-akad.png') center/cover;
+        }
+
+        /* Background Foto Resepsi Nikah (foto-resepsi.jpg) */
+        .oval-card-resepsi {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.82), rgba(255, 245, 245, 0.88)), url('foto-resepsi.png') center/cover;
+        }
+
+        /* Tombol Instagram */
+        .btn-ig-red {
+            background-color: #8B1E28; color: white;
+            padding: 8px 24px; border-radius: 20px; text-decoration: none;
+            font-size: 0.85rem; font-weight: 500; display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 15px; transition: 0.3s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+        .btn-ig-red:hover { background-color: #6b161e; color: white; transform: translateY(-2px); }
+
+        /* LOVE STORY */
+        .love-story-container { text-align: left; padding: 0 10px; margin-top: 30px; }
+        .love-story-item { margin-bottom: 25px; }
+        .love-story-item h3 { font-size: 1.3rem; margin: 0 0 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.4); padding-bottom: 5px; }
+        .love-story-item p { font-size: 0.85rem; margin: 0; line-height: 1.6; opacity: 0.9; }
+
+        /* COUNTDOWN TIMER */
+        .timer-container { display: flex; justify-content: center; gap: 25px; margin-top: 20px; }
+        .timer-box { text-align: center; }
+        .timer-box span { display: block; font-size: 1.8rem; font-family: 'Playfair Display', serif; font-weight: 600; color: #8B1E28; line-height: 1.2; }
+        .timer-box p { margin: 2px 0 0 0; font-size: 0.75rem; color: #555; }
+
+        /* GALLERY */
+        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .gallery img { width: 100%; height: 180px; object-fit: cover; cursor: pointer; border: 2px solid white; transition: 0.3s; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+        .gallery img.main-vid { grid-column: span 2; height: 220px; }
+        .gallery img:hover { transform: scale(1.02); filter: brightness(0.85); }
+
+        /* Kotak Foto Ar-Rum */
+        .arrum-photo-box {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 10px 0 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* PAGE TERAKHIR / PENUTUP (Background: foto-penutup.jpg) */
+        .closing-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(139,30,40,0.85)), url('foto-penutup.jpg') center/cover;
+            color: white;
+            padding: 70px 25px;
+            text-align: center;
+        }
+
+        /* FOOTER PEMBUAT */
+        .footer {
+            background-color: #5c141b;
+            color: rgba(255, 255, 255, 0.85);
             font-size: 0.75rem;
-            color: #666;
-            text-transform: uppercase;
-        }
-        
-        /* Galeri & Lightbox */
-        .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .gallery img { 
-            width: 100%; height: 180px; object-fit: cover; border-radius: 10px; 
-            cursor: pointer; transition: transform 0.3s, filter 0.3s;
-        }
-        .gallery img:hover { transform: scale(1.03); filter: brightness(0.9); }
-
-        /* Modal Overlay (Pop-up Lightbox & Amplop) */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 200; justify-content: center; align-items: center;
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: white; padding: 30px 20px; border-radius: 15px; max-width: 450px; width: 85%;
-            position: relative; text-align: center; animation: popUp 0.3s ease-out;
-        }
-        @keyframes popUp {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .close-btn {
-            position: absolute; top: 10px; right: 15px; font-size: 28px; color: #777; cursor: pointer;
+            padding: 15px 20px;
+            text-align: center;
+            letter-spacing: 0.5px;
         }
 
-        /* Form & Rekening Box */
-        input, textarea, select {
-            width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: 'Poppins', sans-serif;
-        }
-        .rekening-box {
-            background: #fdf8f3; border: 1px dashed #8b5e34; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: left;
-        }
+        /* Form RSVP */
+        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        .btn-submit { background-color: white; color: #8B1E28; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+        .btn-submit:hover { background-color: #f0f0f0; transform: translateY(-2px); }
 
-        /* Tombol Musik Melayang */
-        #music-btn {
-            position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px;
-            background: #8b5e34; color: white; border-radius: 50%; display: flex;
-            justify-content: center; align-items: center; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 150; font-size: 20px;
+        /* Modal Lightbox Foto Slider */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 200; justify-content: center; align-items: center; }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 32px; cursor: pointer; width: 45px; height: 45px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; justify-content: center; align-items: center; user-select: none; transition: 0.3s; z-index: 210; }
+        .lightbox-nav:hover { background: rgba(255, 255, 255, 0.4); }
+        .prev-btn { left: 15px; } .next-btn { right: 15px; }
+        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 35px; color: white; cursor: pointer; z-index: 210; }
+
+        /* Tombol Musik Melayang On/Off */
+        #music-btn { 
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px; 
+            width: 48px; 
+            height: 48px; 
+            background: white; 
+            color: #8B1E28; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+            z-index: 999; 
+            font-size: 22px; 
+            border: 2px solid #8B1E28; 
+            user-select: none;
+            transition: transform 0.2s ease;
         }
+        #music-btn:active { transform: scale(0.9); }
     </style>
 </head>
 <body>
 
-    <!-- Musik Latar Belakang -->
+    <!-- MUSIK LATAR BELAKANG -->
     <audio id="bg-music" loop preload="auto">
         <source src="kennyg-lovingyou.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Tombol Kontrol Musik Melayang -->
-    <div id="music-btn" onclick="toggleMusik()" title="Putar/Hentikan Musik">🎵</div>
+    <!-- TOMBOL KONTROL MUSIK MELAYANG (ON / OFF) -->
+    <div id="music-btn" onclick="toggleMusik()" title="Putar/Hentikan Musik">🔇</div>
 
-    <!-- 1. Sampul Utama -->
-    <div id="cover">
-        <p style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem;">The Wedding Of</p>
-        <h1>Romeo & Juliet</h1>
-        <p style="margin-top: 15px; font-size: 0.9rem;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-        <h2 id="tamu-nama" style="color: #f3e5ab; font-family: 'Poppins', sans-serif; font-size: 1.4rem; margin: 5px 0 15px 0;">Tamu Undangan</h2>
-        <p style="font-size: 0.75rem; font-style: italic; opacity: 0.8;">*Mohon maaf bila ada kesalahan penulisan nama/gelar</p>
-        <button class="btn" onclick="bukaUndangan()">Buka Undangan &darr;</button>
-    </div>
+    <!-- CONTAINER UTAMA -->
+    <div class="container">
 
-    <!-- 2. Konten Utama Undangan -->
-    <div id="main-content" class="container">
-        
-        <!-- Pembuka / Mempelai -->
-        <div class="section fade-in-section" style="margin-top: 50px;">
-            <p style="font-size: 0.95rem; color: #666; margin-bottom: 25px;">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami:</p>
-            
-            <!-- Mempelai Pria -->
-            <div class="mempelai-card">
-                <h1 style="font-size: 3rem; margin: 0;">Romeo Alfa</h1>
-                <p style="margin: 5px 0 0 0; color: #555;">Putra dari Bapak A & Ibu B</p>
-                <a href="https://instagram.com/romeo.alfa" target="_blank" class="btn-ig">📷 @romeo.alfa</a>
+        <!-- 1. COVER DEPAN -->
+        <div id="cover">
+            <div class="cover-top">
+                <h3 class="font-serif">The Wedding of</h3>
+                <h1>Iil & Kealvin</h1>
+                <p>Sabtu, 26 September 2026</p>
             </div>
 
-            <h1 style="font-size: 2.5rem; margin: 20px 0;">&</h1>
-
-            <!-- Mempelai Wanita -->
-            <div class="mempelai-card">
-                <h1 style="font-size: 3rem; margin: 0;">Juliet Beta</h1>
-                <p style="margin: 5px 0 0 0; color: #555;">Putri dari Bapak X & Ibu Y</p>
-                <a href="https://instagram.com/juliet.beta" target="_blank" class="btn-ig">📷 @juliet.beta</a>
+            <div class="cover-bottom">
+                <p>Kepada Yth, Bapak, Ibu, Saudara/i:</p>
+                <h2 id="tamu-nama">Nama Tamu</h2>
+                <p style="font-size: 0.75rem; margin-bottom: 20px;">Mohon maaf jika ada kesalahan nama</p>
+                <button class="btn-cover" onclick="bukaUndangan()">
+                    ✉ Buka Undangan
+                </button>
             </div>
         </div>
 
-        <!-- Awal Mula Perjalanan (Love Story) -->
-        <div class="section fade-in-section">
-            <h2>Kisah Perjalanan</h2>
-            <div style="text-align: left; padding: 0 10px;">
-                <p><strong>Awal Bertemu (2020)</strong><br><span style="color: #666; font-size: 0.9rem;">Kami pertama kali bertemu di sebuah acara komunitas. Berawal dari sapaan singkat, kami mulai berteman baik.</span></p>
-                <hr style="border: none; border-top: 1px dashed #ccc; margin: 15px 0;">
-                <p><strong>Berkomitmen (2022)</strong><br><span style="color: #666; font-size: 0.9rem;">Setelah saling mengenal dan merasa memiliki visi yang sama, kami memutuskan untuk menjalin hubungan yang lebih serius.</span></p>
-                <hr style="border: none; border-top: 1px dashed #ccc; margin: 15px 0;">
-                <p><strong>Lamaran (2026)</strong><br><span style="color: #666; font-size: 0.9rem;">Dengan restu kedua orang tua, kami melangkah ke jenjang yang lebih serius dan memutuskan untuk mengikat janji suci.</span></p>
-            </div>
-        </div>
-
-        <!-- Waktu & Tempat Acara + COUNTDOWN TIMER -->
-        <div class="section fade-in-section">
-            <h2>Waktu & Tempat</h2>
+        <!-- KONTEN UNDANGAN -->
+        <div id="main-content">
             
-            <div style="margin-bottom: 25px;">
-                <h3 style="margin-bottom: 5px; color: #8b5e34;">Akad Nikah</h3>
-                <p style="margin: 0; font-size: 0.95rem;">Minggu, 12 Desember 2026</p>
-                <p style="margin: 0; font-size: 0.95rem; color: #666;">08.00 WIB - Selesai</p>
-            </div>
-            <div style="margin-bottom: 25px;">
-                <h3 style="margin-bottom: 5px; color: #8b5e34;">Resepsi</h3>
-                <p style="margin: 0; font-size: 0.95rem;">Minggu, 12 Desember 2026</p>
-                <p style="margin: 0; font-size: 0.95rem; color: #666;">11.00 WIB - 14.00 WIB</p>
+            <!-- 2. THE WEDDING OF (Background: foto-mempelai-bg.jpg) -->
+            <div class="section bg-mempelai fade-in-section">
+                <h3 style="letter-spacing: 2px; font-size: 1rem;">THE WEDDING OF</h3>
+                
+                <!-- FOTO MEMPELAI DI DALAM BINGKAI OVAL (foto-berdua.jpg) -->
+                <div class="oval-wrapper">
+                    <img src="foto-berdua.jpg" alt="Foto Iil & Kealvin">
+                </div>
+
+                <div style="margin: 30px 0 40px 0;">
+                    <h1 style="font-size: 2.5rem; margin: 0;" class="text-red">Hiliyatun Mashun</h1>
+                    <p style="font-size: 0.85rem; font-weight: 600; margin: 5px 0;">Putri Kedua Dari<br><span style="font-weight: 400;">Bapak Ridwan & Ibu Hanifah</span></p>
+                    <a href="https://instagram.com/iliyaamshn" target="_blank" class="btn-ig-red">◎ Instagram</a>
+                </div>
+
+                <h1 style="font-size: 2.5rem; margin: 20px 0;" class="text-red">&</h1>
+
+                <div style="margin: 40px 0;">
+                    <h1 style="font-size: 2.5rem; margin: 0;" class="text-red">Muhammad Kealvin Al Akbary</h1>
+                    <p style="font-size: 0.85rem; font-weight: 600; margin: 5px 0;">Putra Kedua Dari<br><span style="font-weight: 400;">Bapak Asep Moch Yusup & Ibu Silviana</span></p>
+                    <a href="https://instagram.com/m_kealvin" target="_blank" class="btn-ig-red">◎ Instagram</a>
+                </div>
             </div>
 
-            <!-- Fitur Rundown / Countdown Timer -->
-            <div style="margin: 30px 0 20px 0;">
-                <p style="font-size: 0.85rem; font-weight: 600; color: #8b5e34; text-transform: uppercase; letter-spacing: 1px;">Menghitung Hari Menuju Acara</p>
-                <div class="timer-container">
+            <!-- 3. LOVE STORY -->
+            <div class="section bg-red fade-in-section">
+                <h1 style="font-size: 3.5rem; margin: 0 0 20px 0;">Love Story</h1>
+                
+                <div class="love-story-container">
+                    <div class="love-story-item">
+                        <h3>Pertemuan</h3>
+                        <p>Di tahun terakhir sekolah, di lorong SMA yang sama, semesta mempertemukan kami. Dia, yang sudah di ujung masa SMA, sibuk dengan perpisahan dan masa depan. Aku, yang masih duduk di bangku kelas 11, sibuk dengan buku dan mimpi. Pertemuan singkat itu menanamkan nama di hati.</p>
+                    </div>
+                    <div class="love-story-item">
+                        <h3>Memulai Bersama</h3>
+                        <p>Setahun kemudian, saat aku akhirnya lulus, kami memutuskan untuk memulai. Bukan lagi sekadar sapa di sekolah, tapi janji untuk berjalan bersama. Dari LDR, dari beda kota kuliah, dari masa-masa rapuh... kami belajar.</p>
+                    </div>
+                    <div class="love-story-item">
+                        <h3>Menuju Janji Suci</h3>
+                        <p>Dan kini, setelah 8 tahun sejak pertama kali bertemu, setelah 7 tahun menjalin cinta... Kami siap untuk naik ke jenjang yang paling indah yakni pernikahan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. SAVE THE DATE & COUNTDOWN (Background: foto-savedate-bg.jpg) -->
+            <div class="section bg-savedate fade-in-section">
+                <h1 style="font-size: 3rem; margin: 0;" class="text-red">Save the Date</h1>
+                
+                <!-- Countdown Minimalis -->
+                <div class="timer-container" style="margin-bottom: 40px;">
                     <div class="timer-box"><span id="days">00</span><p>Hari</p></div>
                     <div class="timer-box"><span id="hours">00</span><p>Jam</p></div>
                     <div class="timer-box"><span id="minutes">00</span><p>Menit</p></div>
                     <div class="timer-box"><span id="seconds">00</span><p>Detik</p></div>
                 </div>
+
+                <!-- Kartu Oval Akad Nikah (Background: foto-akad.jpg) -->
+                <div class="oval-card oval-card-akad">
+                    <h1 style="font-size: 3rem; margin: 0;" class="text-red">Akad Nikah</h1>
+                    <h3 style="margin: 10px 0 5px 0;">SABTU</h3>
+                    <h3 style="font-size: 1.4rem; margin: 0;">26 SEPTEMBER 2026</h3>
+                    <p style="font-size: 0.85rem; margin-top: 5px;">07.00 - Selesai</p>
+                    
+                    <div style="margin-top: 20px;">
+                        <span style="font-size: 24px;">📍</span>
+                        <h3 style="margin: 5px 0; font-size: 1.1rem;">Kediaman Mempelai Wanita</h3>
+                        <p style="font-size: 0.8rem; margin-top: 0;">Dusun Krajan 02, RT. 002 RW. 001, Desa Curah Tulis, Kec. Tongas, <br>Kab. Probolinggo, Jawa Timur</p>
+                        <a href="https://maps.app.goo.gl/fkV7SpQvTV4euUxt5" target="_blank" class="btn-ig-red" style="padding: 10px 30px; font-size: 0.9rem;">📍 Google Maps</a>
+                    </div>
+                </div>
+
+                <!-- Kartu Oval Resepsi Nikah (Background: foto-resepsi.jpg) -->
+                <div class="oval-card oval-card-resepsi">
+                    <h1 style="font-size: 3rem; margin: 0;" class="text-red">Resepsi Nikah</h1>
+                    <h3 style="margin: 10px 0 5px 0;">SABTU</h3>
+                    <h3 style="font-size: 1.4rem; margin: 0;">26 SEPTEMBER 2026</h3>
+                    <p style="font-size: 0.85rem; margin-top: 5px;">14.00 - 17.00 WIB</p>
+                    
+                    <div style="margin-top: 20px;">
+                        <span style="font-size: 24px;">📍</span>
+                        <h3 style="margin: 5px 0; font-size: 1.1rem;">Kediaman Mempelai Wanita</h3>
+                        <p style="font-size: 0.8rem; margin-top: 0;">Dusun Krajan 02, RT. 002 RW. 001, Desa Curah Tulis, Kec. Tongas, <br>Kab. Probolinggo, Jawa Timur</p>
+                        <a href="https://maps.app.goo.gl/fkV7SpQvTV4euUxt5" target="_blank" class="btn-ig-red" style="padding: 10px 30px; font-size: 0.9rem;">📍 Google Maps</a>
+                    </div>
+                </div>
             </div>
 
-            <p style="margin-top: 25px;"><strong>Lokasi Acara:</strong><br><span style="color: #555;">Gedung Serbaguna Indah<br>Jl. Mawar Merah No. 123, Jakarta</span></p>
-            <a href="https://maps.google.com" target="_blank" class="btn">Lihat Google Maps</a>
-        </div>
+            <!-- 5. OUR GALLERY & RSVP (MENYATU / SEAMLESS) -->
+            <div class="section bg-red fade-in-section" style="padding-bottom: 50px;">
+                <h1 style="font-size: 3.5rem; margin: 0 0 20px 0;">Our Gallery</h1>
+                <p style="font-size: 0.8rem; margin-bottom: 15px;">Klik foto untuk memperbesar</p>
+                
+                <!-- GALERI FOTO (galeri-1.jpg s/d galeri-5.jpg) -->
+                <div class="gallery">
+                    <img src="galeri-1.jpg" alt="Gallery Main" class="main-vid" onclick="bukaLightbox(0)">
+                    <img src="galeri-2.jpg" alt="Gallery 1" onclick="bukaLightbox(1)">
+                    <img src="galeri-3.jpg" alt="Gallery 2" onclick="bukaLightbox(2)">
+                    <img src="galeri-4.jpg" alt="Gallery 3" onclick="bukaLightbox(3)">
+                    <img src="galeri-5.jpg" alt="Gallery 4" onclick="bukaLightbox(4)">
+                </div>
 
-        <!-- Galeri Foto -->
-        <div class="section fade-in-section">
-            <h2>Galeri Momen</h2>
-            <p style="font-size: 0.8rem; color: #777; margin-bottom: 15px;">Klik pada foto untuk memperbesar (Highlight)</p>
-            <div class="gallery">
-                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Foto 1" onclick="bukaLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Foto 2" onclick="bukaLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Foto 3" onclick="bukaLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Foto 4" onclick="bukaLightbox(this)">
+                <!-- FORM RSVP -->
+                <div style="margin-top: 50px; border-top: 1px dashed rgba(255,255,255,0.3); padding-top: 40px;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Konfirmasi Kehadiran</h3>
+                    <form onsubmit="kirimRSVP(event)">
+                        <input type="text" id="nama-rsvp" placeholder="Nama Anda" required>
+                        <select id="kehadiran-rsvp" required style="color: #333;">
+                            <option value="" disabled selected>Apakah Anda akan hadir?</option>
+                            <option value="Hadir">Ya, Saya akan hadir</option>
+                            <option value="Tidak Hadir">Maaf, saya tidak bisa hadir</option>
+                        </select>
+                        <textarea id="pesan-rsvp" rows="3" placeholder="Berikan ucapan atau doa untuk kedua mempelai"></textarea>
+                        <button type="submit" class="btn-submit">Kirim Ucapan (via WA)</button>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <!-- Amplop Digital (Tombol Pop-up) -->
-        <div class="section fade-in-section">
-            <h2>Amplop Digital</h2>
-            <p style="font-size: 0.9rem; color: #666;">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika ingin memberikan tanda kasih secara digital, silakan klik tombol di bawah ini:</p>
-            <button class="btn" onclick="bukaAmplop()">🎁 Buka Amplop Digital</button>
-        </div>
-
-        <!-- Form Kehadiran RSVP -->
-        <div class="section fade-in-section">
-            <h2>Konfirmasi Kehadiran</h2>
-            <form onsubmit="kirimRSVP(event)">
-                <input type="text" id="nama-rsvp" placeholder="Nama Anda" required>
-                <select id="kehadiran-rsvp" required>
-                    <option value="" disabled selected>Apakah Anda akan hadir?</option>
-                    <option value="Hadir">Ya, Saya akan hadir</option>
-                    <option value="Tidak Hadir">Maaf, saya tidak bisa hadir</option>
-                </select>
-                <textarea id="pesan-rsvp" rows="3" placeholder="Berikan ucapan atau doa untuk kedua mempelai"></textarea>
-                <button type="submit" class="btn">Kirim Ucapan (via WA)</button>
-            </form>
-        </div>
-
-        <div class="fade-in-section" style="margin-top: 50px;">
-            <p style="font-size: 0.9rem;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
-            <h2 style="font-size: 2.5rem; margin-top: 10px;">Romeo & Juliet</h2>
-        </div>
-
-    </div>
-
-    <!-- POP-UP MODAL AMPLOP DIGITAL -->
-    <div id="modal-amplop" class="modal" onclick="tutupAmplop(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="tutupAmplopDirect()">&times;</span>
-            <h2 style="margin-top: 0;">Amplop Digital</h2>
-            <p style="font-size: 0.85rem; color: #666;">Transfer tanda kasih melalui nomor rekening/e-wallet berikut:</p>
-            
-            <div class="rekening-box">
-                <strong>BCA</strong>
-                <p style="margin: 5px 0;">1234567890 a.n Romeo</p>
-                <button class="btn" style="padding: 6px 16px; font-size: 0.8rem; margin-top: 5px;" onclick="copyText('1234567890')">Salin No. Rekening</button>
+            <!-- 6. SECTION SURAT AR-RUM AYAT 21 (Background: foto-arrum-bg.jpg & Foto Box: foto-arrum.jpg) -->
+            <div class="section bg-arrum fade-in-section">
+                <img src="foto-arrum.jpg" alt="Foto Ar-Rum" class="arrum-photo-box">
+                
+                <p style="font-size: 0.85rem; line-height: 1.7; font-style: italic; color: #555; margin-top: 20px;">
+                    "Dan di antara tanda-tanda (kebesaran-Nya) ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+                </p>
+                <h3 style="font-size: 1rem; color: #8B1E28; margin-top: 10px;">(QS. Ar-Rum: 21)</h3>
             </div>
-            
-            <div class="rekening-box">
-                <strong>GOPAY / DANA</strong>
-                <p style="margin: 5px 0;">081234567890 a.n Juliet</p>
-                <button class="btn" style="padding: 6px 16px; font-size: 0.8rem; margin-top: 5px;" onclick="copyText('081234567890')">Salin No. HP</button>
-            </div>
-        </div>
-    </div>
 
-    <!-- LIGHTBOX FOTO -->
+            <!-- 7. PAGE TERAKHIR / PENUTUP -->
+            <div class="closing-section fade-in-section">
+                <p style="font-size: 0.9rem; line-height: 1.7; opacity: 0.95;">
+                    Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai. Atas kehadiran serta doa restu, kami ucapkan terima kasih.
+                </p>
+                <h1 style="font-size: 3.5rem; margin-top: 35px; color: white;">Iil & Kealvin</h1>
+            </div>
+
+            <!-- 8. FOOTER HAK CIPTA / CREATOR -->
+            <div class="footer">
+                <p style="margin: 0;">Designed & Created with ❤️ by <strong>Kealvin & Iil</strong></p>
+            </div>
+
+        </div> <!-- End Main Content -->
+    </div> <!-- End Container -->
+
+    <!-- LIGHTBOX FOTO SLIDER -->
     <div id="lightbox" class="modal" onclick="tutupLightbox()">
-        <span class="close-btn" style="color:white; top:20px; right:30px; font-size:40px;">&times;</span>
-        <img id="lightbox-img" src="" alt="Highlight Foto" style="max-width:90%; max-height:85%; border-radius:10px;">
+        <span class="close-btn" onclick="tutupLightbox()">&times;</span>
+        <span class="lightbox-nav prev-btn" onclick="prevImg(event)">&#10094;</span>
+        <img id="lightbox-img" src="" alt="Highlight Foto" onclick="event.stopPropagation()" style="max-width:90%; max-height:80%; border-radius:10px; border: 3px solid white;">
+        <span class="lightbox-nav next-btn" onclick="nextImg(event)">&#10095;</span>
     </div>
 
     <script>
-        // 0. Otomatis Kembali ke Paling Atas Saat Reload/Refresh Page
+        // 0. Reset posisi scroll ke paling atas saat refresh
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
         window.scrollTo(0, 0);
 
-        // 1. Parameter URL (?to=Nama+Tamu)
+        // 1. Ganti Nama Tamu dari URL Parameter (?to=Nama)
         const urlParams = new URLSearchParams(window.location.search);
         const namaTamu = urlParams.get('to');
         if (namaTamu) {
             document.getElementById('tamu-nama').innerText = namaTamu;
         }
 
-        // 2. Fungsi Buka Undangan & Autoplay Musik
+        // 2. SISTEM AUDIO & AUTO-PLAY KETIKA DI-SCROLL / DISENTUH
         const audio = document.getElementById('bg-music');
-        let isPlaying = false;
+        const musicBtn = document.getElementById('music-btn');
 
-        function bukaUndangan() {
-            playAudio();
-            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
-        }
+        audio.addEventListener('play', function() {
+            musicBtn.innerText = '🎵';
+        });
+        audio.addEventListener('pause', function() {
+            musicBtn.innerText = '🔇';
+        });
 
-        function playAudio() {
-            audio.play().then(() => {
-                isPlaying = true;
-                document.getElementById('music-btn').innerText = '🎵';
-            }).catch(error => {
-                console.log("Autoplay ditolak atau file mp3 tidak ditemukan.");
-            });
-        }
+        let isMusicStarted = false;
 
-        function toggleMusik() {
-            if (isPlaying) {
-                audio.pause();
-                isPlaying = false;
-                document.getElementById('music-btn').innerText = '🔇';
-            } else {
-                playAudio();
+        function pemicuAudioOtomatis() {
+            if (!isMusicStarted && audio.paused) {
+                audio.play().then(() => {
+                    isMusicStarted = true;
+                    lepasListenerSentuhan();
+                }).catch(err => {
+                    console.log("Menunggu sentuhan pengguna untuk memainkan audio:", err);
+                });
             }
         }
 
-        // 3. Countdown Timer / Rundown Hitung Mundur
-        const eventDate = new Date("2026-12-12T08:00:00").getTime();
+        function lepasListenerSentuhan() {
+            window.removeEventListener('scroll', pemicuAudioOtomatis);
+            window.removeEventListener('touchstart', pemicuAudioOtomatis);
+            window.removeEventListener('touchmove', pemicuAudioOtomatis);
+            window.removeEventListener('wheel', pemicuAudioOtomatis);
+        }
+
+        window.addEventListener('scroll', pemicuAudioOtomatis, { passive: true });
+        window.addEventListener('touchstart', pemicuAudioOtomatis, { passive: true });
+        window.addEventListener('touchmove', pemicuAudioOtomatis, { passive: true });
+        window.addEventListener('wheel', pemicuAudioOtomatis, { passive: true });
+
+        function toggleMusik() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    isMusicStarted = true;
+                    lepasListenerSentuhan();
+                }).catch(function(err) {
+                    alert("Gagal memutar lagu. Pastikan file 'kenny-g-loving-you.mp3' diletakkan di dalam folder yang sama dengan file index.html!");
+                });
+            } else {
+                audio.pause();
+            }
+        }
+
+        function bukaUndangan() {
+            pemicuAudioOtomatis();
+            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 3. Countdown Timer (Target: 26 September 2026 08:00)
+        const eventDate = new Date("2026-09-26T08:00:00").getTime();
 
         const timerInterval = setInterval(function() {
             const now = new Date().getTime();
@@ -378,7 +486,7 @@
 
             if (distance < 0) {
                 clearInterval(timerInterval);
-                document.querySelector('.timer-container').innerHTML = "<p style='color:#8b5e34; font-weight:bold;'>Acara Telah Berlangsung</p>";
+                document.querySelector('.timer-container').innerHTML = "<p style='color:#8B1E28; font-weight:bold; font-size:1.2rem;'>Acara Telah Berlangsung</p>";
                 return;
             }
 
@@ -393,59 +501,75 @@
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }, 1000);
 
-        // 4. Modals Amplop Digital
-        function bukaAmplop() {
-            document.getElementById('modal-amplop').style.display = 'flex';
+        // 4. Lightbox Galeri Slider
+        let currentImgIndex = 0;
+        let galleryImages = [];
+
+        function bukaLightbox(index) {
+            galleryImages = Array.from(document.querySelectorAll('.gallery img'));
+            currentImgIndex = index;
+            updateLightbox();
+            document.getElementById('lightbox').style.display = 'flex';
         }
 
-        function tutupAmplopDirect() {
-            document.getElementById('modal-amplop').style.display = 'none';
-        }
-
-        function tutupAmplop(event) {
-            if (event.target.id === 'modal-amplop') {
-                document.getElementById('modal-amplop').style.display = 'none';
+        function updateLightbox() {
+            if (galleryImages.length > 0) {
+                document.getElementById('lightbox-img').src = galleryImages[currentImgIndex].src;
             }
         }
 
-        // 5. Lightbox Galeri
-        function bukaLightbox(img) {
-            document.getElementById('lightbox-img').src = img.src;
-            document.getElementById('lightbox').style.display = 'flex';
+        function prevImg(event) {
+            event.stopPropagation();
+            currentImgIndex = (currentImgIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightbox();
+        }
+
+        function nextImg(event) {
+            event.stopPropagation();
+            currentImgIndex = (currentImgIndex + 1) % galleryImages.length;
+            updateLightbox();
         }
 
         function tutupLightbox() {
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // 6. Salin Rekening
-        function copyText(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Nomor berhasil disalin: " + text);
-            });
-        }
+        document.addEventListener('keydown', function(event) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.style.display === 'flex') {
+                if (event.key === 'ArrowLeft') {
+                    currentImgIndex = (currentImgIndex - 1 + galleryImages.length) % galleryImages.length;
+                    updateLightbox();
+                }
+                if (event.key === 'ArrowRight') {
+                    currentImgIndex = (currentImgIndex + 1) % galleryImages.length;
+                    updateLightbox();
+                }
+                if (event.key === 'Escape') tutupLightbox();
+            }
+        });
 
-        // 7. Intersection Observer untuk Efek Slide-Up
+        // 5. Animasi Slide-Up Menggunakan Intersection Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.fade-in-section').forEach(section => {
             observer.observe(section);
         });
 
-        // 8. Kirim RSVP ke WhatsApp
+        // 6. Form Kehadiran (RSVP via WhatsApp)
         function kirimRSVP(event) {
             event.preventDefault();
             const nama = document.getElementById('nama-rsvp').value;
             const hadir = document.getElementById('kehadiran-rsvp').value;
             const pesan = document.getElementById('pesan-rsvp').value;
             
-            const noWA = "6281234567890";
+            const noWA = "6281333623377"; // Ganti dengan nomor WhatsApp penerima (format internasional tanpa tanda +)
             const teksWA = `Halo, saya *${nama}*.%0AStatus Kehadiran: *${hadir}*.%0APesan/Ucapan: ${pesan}`;
             
             window.open(`https://api.whatsapp.com/send?phone=${noWA}&text=${teksWA}`, '_blank');
